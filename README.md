@@ -25,13 +25,13 @@ You will need to have Rust installed. You can get it by visiting <https://rustup
 Just run:
 
 ```bash
-curl -L https://raw.githubusercontent.com/rust-lang/rustlings/main/install.sh | bash
+curl -L sh.rustlings.cool | bash
 ```
 
 Or if you want it to be installed to a different path:
 
 ```bash
-curl -L https://raw.githubusercontent.com/rust-lang/rustlings/main/install.sh | bash -s mypath/
+curl -L sh.rustlings.cool | bash -s mypath/
 ```
 
 This will install Rustlings and give you access to the `rustlings` command. Run it to get started!
@@ -41,8 +41,8 @@ This will install Rustlings and give you access to the `rustlings` command. Run 
 Basically: Clone the repository at the latest tag, finally run `nix develop` or `nix-shell`.
 
 ```bash
-# find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.6.0)
-git clone -b 5.6.0 --depth 1 https://github.com/rust-lang/rustlings
+# find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.6.1)
+git clone -b 5.6.1 --depth 1 https://github.com/rust-lang/rustlings
 cd rustlings
 # if nix version > 2.3
 nix develop
@@ -61,7 +61,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Then, you can run:
 
 ```ps1
-Start-BitsTransfer -Source https://raw.githubusercontent.com/rust-lang/rustlings/main/install.ps1 -Destination $env:TMP/install_rustlings.ps1; Unblock-File $env:TMP/install_rustlings.ps1; Invoke-Expression $env:TMP/install_rustlings.ps1
+Start-BitsTransfer -Source https://ps1.rustlings.cool -Destination $env:TMP/install_rustlings.ps1; Unblock-File $env:TMP/install_rustlings.ps1; Invoke-Expression $env:TMP/install_rustlings.ps1
 ```
 
 To install Rustlings. Same as on MacOS/Linux, you will have access to the `rustlings` command after it. Keep in mind that this works best in PowerShell, and any other terminals may give you errors.
@@ -79,8 +79,8 @@ If you get a permission denied message, you might have to exclude the directory 
 Basically: Clone the repository at the latest tag, run `cargo install --path .`.
 
 ```bash
-# find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.6.0)
-git clone -b 5.6.0 --depth 1 https://github.com/rust-lang/rustlings
+# find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.6.1)
+git clone -b 5.6.1 --depth 1 https://github.com/rust-lang/rustlings
 cd rustlings
 cargo install --force --path .
 ```
