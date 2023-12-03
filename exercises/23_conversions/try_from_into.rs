@@ -27,8 +27,6 @@ enum IntoColorError {
     IntConversion,
 }
 
-// I AM NOT DONE
-
 // Your task is to complete this implementation and return an Ok result of inner
 // type Color. You need to create an implementation for a tuple of three
 // integers, an array of three integers, and a slice of integers.
@@ -41,6 +39,15 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
     fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (r, g, b) = tuple;
+        let r_u8: Result<u8, _> = r.try_into();
+        let g_u8: Result<u8, _> = g.try_into();
+        let b_u8: Result<u8, _> = b.try_into();
+
+        match (r_u8, g_u8, b_u8) {
+            (Ok(red), Ok(green), Ok(blue)) => Ok(Color { red, green, blue }),
+            _ => Err(IntoColorError::IntConversion),
+        }
     }
 }
 
@@ -48,6 +55,15 @@ impl TryFrom<(i16, i16, i16)> for Color {
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
     fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let [r, g, b] = arr;
+        let r_u8: Result<u8, _> = r.try_into();
+        let g_u8: Result<u8, _> = g.try_into();
+        let b_u8: Result<u8, _> = b.try_into();
+
+        match (r_u8, g_u8, b_u8) {
+            (Ok(red), Ok(green), Ok(blue)) => Ok(Color { red, green, blue }),
+            _ => Err(IntoColorError::IntConversion),
+        }
     }
 }
 
@@ -55,6 +71,22 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
     fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            return Err(IntoColorError::BadLen);
+        }
+
+        if let [r, g, b] = *slice {
+            let r_u8: Result<u8, _> = r.try_into();
+            let g_u8: Result<u8, _> = g.try_into();
+            let b_u8: Result<u8, _> = b.try_into();
+
+            match (r_u8, g_u8, b_u8) {
+                (Ok(red), Ok(green), Ok(blue)) => Ok(Color { red, green, blue }),
+                _ => Err(IntoColorError::IntConversion),
+            }
+        } else {
+            return Err(IntoColorError::BadLen);
+        }
     }
 }
 
